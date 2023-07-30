@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main"><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card bg-dark text-light">
+                    <div class="card-header">
+                        <h1>Book Form</h1>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/books/{id}(id=${book.id})}" th:object="${book}" method="post">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" id="title" class="form-control" th:field="*{title}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Author's Name</label>
+                                <input type="text" id="name" class="form-control" th:field="*{authorName}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="publisher">Publisher</label>
+                                <input type="text" id="publisher" class="form-control" th:field="*{publisher}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="number" id="price" class="form-control" th:field="*{price}">
+                            </div>
+
+                            <div class="box-footer">
+                                <button class="btn btn-outline-success mb-3">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

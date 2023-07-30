@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main"><br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Authors List</h1>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-bordered">
+                            <thead class="bg-dark text-light">
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Date of Birth</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="au : ${authors}">
+                                <td th:text="${au.id}"></td>
+                                <td th:text="${au.name}"></td>
+                                <td th:text="${au.dateOfBirth}"></td>
+                                <td th:text="${au.address}"></td>
+                                <td th:text="${au.email}"></td>
+                                <td>
+                                    <a th:href="@{/authors/edit/{id}(id=${au.id})}">
+                                        <button type="submit" class="btn btn-outline-primary mr-3">Update</button>
+                                    </a>
+
+                                    <a th:href="@{/authors/{id}(id=${au.id})}">
+                                        <button type="submit" class="btn btn-outline-danger mr-3">Delete</button>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <a th:href="@{/authors/new}" class="btn btn-primary">Add Author</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
