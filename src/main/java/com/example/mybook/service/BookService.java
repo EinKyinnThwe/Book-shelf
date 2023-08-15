@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * This is blah blah..
+ */
 @Service
 public class BookService {
 
@@ -34,4 +37,9 @@ public class BookService {
     public void deleteById(int id) {
         bookRepository.deleteById(id);
     }
+
+    public void search(int id) {
+        bookRepository.findById(id);
+    }
+
 }

@@ -18,7 +18,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/books")
+    @GetMapping({"/books", "/"})
     public String listBooks(Model model) {
         model.addAttribute("books", bookService.listAllBooks());
         return "books";
@@ -46,8 +46,10 @@ public class BookController {
     @PostMapping("/books/{id}")
     public String findById(@PathVariable int id, @ModelAttribute("book")Book book, Model model) {
         Book existBook = bookService.findById(id);
+        existBook.setImaUrl(book.getImaUrl());
         existBook.setId(book.getId());
         existBook.setTitle(book.getTitle());
+        existBook.setAuthorName(book.getAuthorName());
         existBook.setPublisher(book.getPublisher());
         existBook.setPrice(book.getPrice());
 
@@ -60,5 +62,11 @@ public class BookController {
     public String deleteBooksById(@PathVariable int id) {
         bookService.deleteById(id);
         return "redirect:/books";
+    }
+
+    @GetMapping("/books/details-view/{id}")
+    public String detailsView(Model model, @PathVariable int id) {
+        model.addAttribute("book" , bookService.findById(id));
+        return "details-view";
     }
 }

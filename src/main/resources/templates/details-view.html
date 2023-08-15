@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <main role="main"><br>
+        <h1 class="text-info text-center">Details View</h1><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                        <div class="card mr-auto" style="width: 18rem;">
+                            <img class="card-img-top" th:src="${book.imaUrl}" alt="Card image cap">
+                        </div>
+                </div>
+                <div class="col-md-6">
+
+                    <form th:action="@{/books/details-view/{id}(id=${book.id})}" th:object="${book}">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" class="form-control" th:field="*{title}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Author's Name</label>
+                            <input type="text" id="name" class="form-control" th:field="*{authorName}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" cols="5" rows="3" class="form-control" th:field="*{description}"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publisher">Publisher</label>
+                            <input type="text" id="publisher" class="form-control" th:field="*{publisher}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" id="price" class="form-control" th:field="*{price}">
+                        </div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <a th:href="@{/books}" class="btn btn-outline-primary btn-block">Back To Book</a>
+            </div>
+        </div>
+        <br><br>
+    </main>
+</body>
+</html>
